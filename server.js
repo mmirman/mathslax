@@ -72,7 +72,7 @@ router.post('/slashtypeset', function(req, res) {
     res.end(); // Empty 200 response -- no text was found to typeset.
     return;
   }
-  log.info("Recieved: " + JSON.stringify(req));
+  log.info("Recieved: " + JSON.stringify(req.body));
   var promiseSuccess = function(mathObjects) {
     //var locals = {'mathObjects': mathObjects,
     //             'serverAddress': SERVER!='127.0.0.1' ?
