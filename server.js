@@ -82,8 +82,8 @@ router.post('/slashtypeset', function(req, res) {
     //             util.format('http://%s:%s/', SERVER, PORT) :
     //             'http://'+req.headers.host+'/' };
     var post_data = {
-      //token: 'xoxp-323707532100-323707532468-337924055719-41abb0dec753331ef7af48c3a10402a9'
-      token: req.body.token,
+      token: 'xoxp-323707532100-323707532468-337924055719-41abb0dec753331ef7af48c3a10402a9'
+      //token: req.body.token,
       channel: req.body.channel_name,
       as_user: req.body.user_name,
       attachments: [
@@ -100,10 +100,7 @@ router.post('/slashtypeset', function(req, res) {
         method: 'post',
         body: JSON.stringify(post_data)
     }).then(function(res) {
-        res.setEncoding('utf8');
-        res.on('data', function (chunk) {
-            log.info('Response: ' + chunk);
-        });
+        log.info('Response: ' + res.body);
     });
 
     res.json({
