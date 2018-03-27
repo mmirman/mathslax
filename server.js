@@ -81,7 +81,7 @@ router.post('/slashtypeset', function(req, res) {
   var promiseSuccess = function(mathObjects) {
     var imgurl = 'http://' + SERVER + '/'+ mathObjects[0].output
     var post_data = {
-      //token: TOKEN,
+      token: TOKEN,
       token: req.body.token,
       channel: req.body.channel_name,
       as_user: req.body.user_name,
