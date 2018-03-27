@@ -82,10 +82,10 @@ router.post('/slashtypeset', function(req, res) {
     var imgurl = 'http://' + SERVER + '/'+ mathObjects[0].output
     var post_data = {
       token: TOKEN,
-      token: req.body.token,
+      //token: req.body.token,
       channel: req.body.channel_name,
       as_user: req.body.user_name,
-      text: "",
+      text: "some text",
       pretty: 1,
       attachments: JSON.stringify([ { fallback: requestString, image_url: imgurl } ])
     };
