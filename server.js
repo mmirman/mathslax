@@ -77,14 +77,9 @@ router.post('/slashtypeset', function(req, res) {
     return;
   }
   log.info("Recieved: " + JSON.stringify(req.body));
-/* {"token":"sXxj8Y1crfbrGRqRupvActL4", */
 
   var promiseSuccess = function(mathObjects) {
-    //var locals = {'mathObjects': mathObjects,
-    //             'serverAddress': SERVER!='127.0.0.1' ?
-    //             util.format('http://%s:%s/', SERVER, PORT) :
-    //             'http://'+req.headers.host+'/' };
-    
+    var imgurl = 'http://' + SERVER + '/'+ mathObjects[0].output
     var post_data = {
       token: TOKEN,
       //token: req.body.token,
@@ -92,25 +87,24 @@ router.post('/slashtypeset', function(req, res) {
       as_user: req.body.user_name,
       text: "some text",
       pretty: 1,
-      attachments: JSON.stringify([ { fallback: requestString, image_url: 'http://' + SERVER + '/' } ])
+      attachments: JSON.stringify([ { fallback: requestString, image_url: imgurl } ])
     };
     var curl = "https://slack.com/api/chat.postMessage?" + querystring.stringify(post_data)
     log.info('posting: ' + curl);
     fetch(curl).then(function(res) {
         log.info('Responseer: ' + res.ok);
     });
-
+    /*  
     res.json({
       response_type: 'in_channel',
       //text: requestString,
       attachments: [
         {
           fallback: requestString,
-          image_url: 'http://' + SERVER + /* ':' + PORT + */ '/'
-            + mathObjects[0].output
+          image_url: imgurl
         },
       ],
-    });
+    }); */
     res.end();
   };
 
