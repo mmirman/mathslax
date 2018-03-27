@@ -1,4 +1,5 @@
 var fetch = require('node-fetch');
+var querystring = require('querystring');
 
 const express = require('express');
 const bodyparser = require('body-parser');
@@ -98,13 +99,12 @@ router.post('/slashtypeset', function(req, res) {
       ],
       pretty: 1
     };
-
-    fetch("https://slack.com/api/chat.postMessage", {
-        method: 'post',
-        body: JSON.stringify(post_data)
+    var curl = "https://slack.com/api/chat.postMessage" + querystring.stringify(post_data)
+    log.info('posting: ' + curl);
+    fetch(curl, {
+        method: 'post'
     }).then(function(res) {
         log.info('Responseer: ' + res.ok);
-        log.info('Responseer: ' + res.body);
     });
 
     res.json({
