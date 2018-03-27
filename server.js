@@ -77,29 +77,9 @@ router.post('/slashtypeset', function(req, res) {
     return;
   }
   log.info("Recieved: " + JSON.stringify(req.body));
-
-  var promiseSuccess = function(mathObjects) {
-    var imgurl = 'http://' + SERVER + '/'+ mathObjects[0].output
-    var post_data = {
-      token: TOKEN,
-      //token: req.body.token,
-      channel: req.body.channel_id,
-      //as_user: req.body.user_id,
-      as_user: true,
-      text: requestString, //"hello world",
-      ts: req.ts,
-      attachments: JSON.stringify([ { fallback: requestString, image_url: imgurl } ])
-    };
-    var curl = "https://slack.com/api/chat.update?" + querystring.stringify(post_data)
-/*
-    fetch(curl).then(function(res) {
-        log.info('Response: ' + res.ok);
-        log.info('Response.error: ' + res.error);
-    }); */
-
     res.json({
       response_type: 'in_channel',
-      text: requestString,
+      text: req.body.user_name + ":",
       replace_original: true,
       attachments: [
         {
