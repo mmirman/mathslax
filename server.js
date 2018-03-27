@@ -91,13 +91,13 @@ router.post('/slashtypeset', function(req, res) {
       channel: req.body.channel_name,
       as_user: req.body.user_name,
       text: "some text",
-      pretty: 1
+      pretty: 1,
+      attachments: JSON.stringify({ attachments: [ { fallback: requestString, image_url: 'http://' + SERVER + '/' } ]})
     };
     var curl = "https://slack.com/api/chat.postMessage?" + querystring.stringify(post_data)
     log.info('posting: ' + curl);
     fetch(curl, {
-        method: 'post',
-        body: json.stringify({ attachments: [ fallback: requestString, image_url: 'http://' + SERVER + '/' ]})
+        method: 'post'
     }).then(function(res) {
         log.info('Responseer: ' + res.ok);
     });
