@@ -110,7 +110,6 @@ router.post('/slashtypeset', function(req, res) {
 
     var post_options = {
       host: 'https://slack.com',
-      port: '80',
       path: '/api/chat.postMessage',
       method: 'POST',
       headers: {
