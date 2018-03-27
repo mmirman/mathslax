@@ -28,7 +28,7 @@ router.post('/typeset', function(req, res) {
 
   log.info('Request:',requestString);
 
-  var typesetPromise = typeset.typeset(requestString, 'math!');
+  var typesetPromise = typeset.typeset(requestString, '');
 
   if (typesetPromise === null) {
     res.send('no text found to typeset');
