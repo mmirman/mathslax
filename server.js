@@ -38,7 +38,7 @@ router.post('/typeset', function(req, res) {
 
   var promiseSuccess = function(mathObjects) {
     var locals = {'mathObjects': mathObjects,
-      'serverAddress': `http://${SERVER}:${PORT}/` };
+      'serverAddress': `http://${SERVER}/` }; // :${PORT}
     var htmlResult = pug.renderFile('./views/slack-response.pug', locals);
     res.json({'text' : htmlResult});
     res.end();
