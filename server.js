@@ -1,4 +1,4 @@
-var fetch = require('fetch');
+import fetch from 'node-fetch';
 
 const express = require('express');
 const bodyparser = require('body-parser');
