@@ -83,6 +83,7 @@ router.post('/slashtypeset', function(req, res) {
     //             'serverAddress': SERVER!='127.0.0.1' ?
     //             util.format('http://%s:%s/', SERVER, PORT) :
     //             'http://'+req.headers.host+'/' };
+    
     var post_data = {
       token: TOKEN,
       //token: req.body.token,
@@ -102,7 +103,7 @@ router.post('/slashtypeset', function(req, res) {
         method: 'post',
         body: JSON.stringify(post_data)
     }).then(function(res) {
-        log.info('Response: ' + res.json());
+        log.info('Responseer: ' + res.body.json());
     });
 
     res.json({
