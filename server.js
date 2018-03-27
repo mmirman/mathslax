@@ -91,7 +91,6 @@ router.post('/slashtypeset', function(req, res) {
       channel: req.body.channel_name,
       as_user: req.body.user_name,
       text: "some text",
-      ],
       pretty: 1
     };
     var curl = "https://slack.com/api/chat.postMessage?" + querystring.stringify(post_data)
