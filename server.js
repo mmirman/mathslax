@@ -103,7 +103,8 @@ router.post('/slashtypeset', function(req, res) {
         method: 'post',
         body: JSON.stringify(post_data)
     }).then(function(res) {
-        log.info('Responseer: ' + res.body.json());
+        log.info('Responseer: ' + res.ok);
+        log.info('Responseer: ' + res.body);
     });
 
     res.json({
