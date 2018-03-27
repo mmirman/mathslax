@@ -79,8 +79,8 @@ router.post('/slashtypeset', function(req, res) {
     //             util.format('http://%s:%s/', SERVER, PORT) :
     //             'http://'+req.headers.host+'/' };
     res.json({
-      response_type: 'chat:write:user',
-      //text: requestString,
+      response_type: 'in_channel',
+      text: req,//requestString,
       attachments: [
         {
           fallback: requestString,
