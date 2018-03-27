@@ -85,26 +85,14 @@ router.post('/slashtypeset', function(req, res) {
       //token: req.body.token,
       channel: req.body.channel_name,
       as_user: req.body.user_name,
-      text: "some text",
+      text: "",
       pretty: 1,
       attachments: JSON.stringify([ { fallback: requestString, image_url: imgurl } ])
     };
     var curl = "https://slack.com/api/chat.postMessage?" + querystring.stringify(post_data)
-    log.info('posting: ' + curl);
     fetch(curl).then(function(res) {
-        log.info('Responseer: ' + res.ok);
+        log.info('Response: ' + res.ok);
     });
-    /*  
-    res.json({
-      response_type: 'in_channel',
-      //text: requestString,
-      attachments: [
-        {
-          fallback: requestString,
-          image_url: imgurl
-        },
-      ],
-    }); */
     res.end();
   };
 
