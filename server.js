@@ -77,6 +77,7 @@ router.post('/slashtypeset', function(req, res) {
     return;
   }
   log.info("Recieved: " + JSON.stringify(req.body));
+  var promiseSuccess = function(mathObjects) {
     res.json({
       response_type: 'in_channel',
       text: req.body.user_name + ":",
