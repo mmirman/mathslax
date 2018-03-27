@@ -1,3 +1,6 @@
+var querystring = require('querystring');
+var http = require('http');
+var fs = require('fs');
 
 const express = require('express');
 const bodyparser = require('body-parser');
@@ -73,11 +76,55 @@ router.post('/slashtypeset', function(req, res) {
     return;
   }
   log.info("Recieved: " + JSON.stringify(req.body));
+/* {"token":"sXxj8Y1crfbrGRqRupvActL4",
+  "team_id":"T9HLTFN2Y",
+"team_domain":"ethsrl",
+"channel_id":"C9X0EEM2R",
+"channel_name":"mathtest",
+"user_id":"U9HLTFNDS",
+"user_name":"matthew.mirman",
+"command":"/math",
+"text":"x+4",
+"response_url":"https://hooks.slack.com/commands/T9HLTFN2Y/337935589095/8MLmuahzSjeE2L6LaUOZaiPv",
+"trigger_id":"337031277557.323707532100.b2cb43f39fe180fa40e741fde43af075"}
+*/
   var promiseSuccess = function(mathObjects) {
     //var locals = {'mathObjects': mathObjects,
     //             'serverAddress': SERVER!='127.0.0.1' ?
     //             util.format('http://%s:%s/', SERVER, PORT) :
     //             'http://'+req.headers.host+'/' };
+    var post_data = querystring.stringify({
+      //token: 'xoxp-323707532100-323707532468-337924055719-41abb0dec753331ef7af48c3a10402a9'
+      token: req.body.token,
+      channel: req.body.channel_name,
+      as_user: req.body.user_name,
+      attachments: [
+        {
+          fallback: requestString,
+          image_url: 'http://' + SERVER + /* ':' + PORT + */ '/'
+            + mathObjects[0].output
+        },
+      ],
+      pretty: 1
+    });
+
+    var post_options = {
+      host: 'https://slack.com',
+      port: '80',
+      path: '/chat.postMessage',
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Content-Length': Buffer.byteLength(post_data)
+      }
+    };
+    var post_req = http.request(post_options, function(res) {
+      res.setEncoding('utf8');
+      res.on('data', function (chunk) {
+          log.info('Response: ' + chunk);
+      });
+    });
+
     res.json({
       response_type: 'in_channel',
       //text: requestString,
