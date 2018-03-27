@@ -80,7 +80,7 @@ router.post('/slashtypeset', function(req, res) {
     //             'http://'+req.headers.host+'/' };
     res.json({
       response_type: 'in_channel',
-      text: req,//requestString,
+      text: JSON.stringify(req),//requestString,
       attachments: [
         {
           fallback: requestString,
