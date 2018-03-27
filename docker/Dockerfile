@@ -16,9 +16,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -qq install -y \
   openjdk-8-jdk
 
 ENV SERVER fqdn
-ENV PORT 8099
+ENV PORT 80
 
-EXPOSE 8099
+EXPOSE 80
 
 RUN git clone https://github.com/colbygk/mathslax.git
 WORKDIR /mathslax
