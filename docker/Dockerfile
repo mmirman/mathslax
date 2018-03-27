@@ -18,6 +18,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -qq install -y \
 ENV SERVER fqdn
 ENV PORT 80
 
+
 EXPOSE 80
 
 RUN git clone https://github.com/colbygk/mathslax.git
