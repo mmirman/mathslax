@@ -101,7 +101,7 @@ router.post('/slashtypeset', function(req, res) {
       attachments: [
         {
           fallback: requestString,
-          image_url: 'http://' + SERVER + /* ':' + PORT + */ '/'
+          image_url: 'http://' + SERVER + '/'
             + mathObjects[0].output
         },
       ],
@@ -111,7 +111,7 @@ router.post('/slashtypeset', function(req, res) {
     var post_options = {
       host: 'https://slack.com',
       port: '80',
-      path: '/chat.postMessage',
+      path: '/api/chat.postMessage',
       method: 'POST',
       headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
