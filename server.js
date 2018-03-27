@@ -84,7 +84,7 @@ router.post('/slashtypeset', function(req, res) {
       attachments: [
         {
           fallback: requestString,
-          image_url: 'http://' + SERVER + ':' + PORT + '/'
+          image_url: 'http://' + SERVER + /* ':' + PORT + */ '/'
             + mathObjects[0].output
         },
       ],
